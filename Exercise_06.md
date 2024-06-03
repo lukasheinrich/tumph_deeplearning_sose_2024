@@ -38,7 +38,7 @@ p(\mathrm{digit}|\mathrm{image})$
 using out standard amortized variational inference setup where we optmize the risk
 
 $$
-\mathrm{KL}(p||q) \to L = -\mathbb{E}_{p(\mathrm{images},\mathrm{labels})}\log q_\phi(\mathrm{digit}|\mathrm{image})
+\mathrm{KL}(p||q) \to L = -\mathbb{E}_{p(\mathrm{images},\mathrm{labels})} \log q (\mathrm{digit}|\mathrm{image})
 $$
 
 The first thing is we need to think about a good family of approximate densities $q_\phi$
