@@ -187,14 +187,19 @@ don't do this at home!)
 
 ```python
 def get_random_batch(N = 200, collection = 'train'):
-    alldata = mnist.train_images()
+    alldata = train_dataset.data.numpy()
     mean,std = alldata.mean(),alldata.std()
     
-    images = getattr(mnist,collection+'_images')()
-    labesl = getattr(mnist,collection+'_labels')()
+    if collection == 'train':
+        images = train_dataset.data.numpy()
+        labels = train_dataset.targets.numpy()
+    elif collection == 'test':
+        images = test_dataset.data.numpy()
+        labels = test_dataset.targets.numpy()
+    else: print('choose train or test')        
     indices = np.random.choice(np.arange(len(images)), size = (N,))
-    X = getattr(mnist,collection+'_images')()[indices].reshape(-1,784)
-    y = getattr(mnist,collection+'_labels')()[indices]
+    X = images[indices].reshape(-1,784)
+    y = labels[indices]
     return torch.FloatTensor((X-mean)/std),torch.LongTensor(y)
 ```
 
