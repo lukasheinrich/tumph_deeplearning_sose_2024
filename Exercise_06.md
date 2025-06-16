@@ -18,9 +18,12 @@ pip install torch
 Import the `mnist` packages and check out the training dataset via
 
 ```python
-import mnist
-train_X = mnist.train_images()
-train_y = mnist.train_labels()
+from torchvision.datasets import MNIST
+
+train_dataset = MNIST('./', train=True, download=True)
+test_dataset  = MNIST('./', train=False, download=True)
+train_X = train_dataset.data.numpy()
+train_y = train_dataset.targets.numpy()
 ```
 
 MNIST digits are 28 x 28 pixels and the labels are single digits 0-9
